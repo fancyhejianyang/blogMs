@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'blogMs';
+  watchMessage(){
+    console.log('message');
+  }
+  showMaterial(e:MouseEvent){
+    e.preventDefault();
+    e.cancelBubble = true;
+    console.log('material');
+  }
 }
