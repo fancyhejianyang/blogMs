@@ -15,7 +15,8 @@ const viewRoutes: Routes = [
       },
       {
         path: 'index',
-        component: IndexComponent
+        component: IndexComponent,
+        data: { title: '文章发布' }
       }
     ]
   }

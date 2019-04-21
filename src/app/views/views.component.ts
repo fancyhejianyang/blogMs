@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-views',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./views.component.scss']
 })
 export class ViewsComponent implements OnInit {
-
-  constructor() { }
+  minHeight: string;
+  constructor(private activeRoute: ActivatedRoute) {
+    this.minHeight = window.innerHeight - 60 + 'px';
+  }
 
   ngOnInit() {
+    this.activeRoute.data.subscribe(data => {
+      console.log(data);
+    });
   }
 
 }

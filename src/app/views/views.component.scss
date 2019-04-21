@@ -1,6 +1,23 @@
+:host(.view-container) {
+  height: 100%;
+  width: 100%;
+}
+
 .left-menu {
   width: 200px;
+  height: 100%;
+  background: rgb(215, 224, 223);
+  float: left;
 }
-.menu-item:hover{
+
+.content {
+  float: left;
+  width:-moz-calc(100% - (200px));
+	width:-webkit-calc(100% - (200px));
+	width: calc(100% - (200px));
+  height: 100%;
+}
+
+.menu-item:hover {
   background-color: rgb(215, 224, 223);
 }
