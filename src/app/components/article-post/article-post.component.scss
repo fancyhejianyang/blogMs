@@ -1,0 +1,158 @@
+.arc-edit {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+  height: 900px;
+
+  .w-e-text {
+    height: 100% !important;
+  }
+}
+
+.title {
+  margin: 10px 0;
+
+  input {
+    width: 100%;
+    font-size: 24px;
+    color: rgb(14, 13, 13);
+    line-height: 40px;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+}
+
+.options {
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 30px;
+
+  label {
+    margin: 0 10px;
+
+    span {
+      color: rgb(11, 130, 167);
+    }
+
+    select {
+      line-height: 30px;
+    }
+
+    .tag {
+      width: 180px;
+      margin-right: 10px;
+    }
+  }
+}
+
+::ng-deep .ant-modal-body {
+  text-align: left;
+  label {
+    display: inline-block;
+    width: 115px;
+    margin: 5px 0px;
+    text-align: left;
+    color: rgb(82, 81, 81);
+    cursor: pointer;
+    position: relative;
+  }
+  .ant-checkbox-wrapper{
+    margin-left: 0px;
+  }
+}
+
+.button-group {
+  width: 200px;
+  margin: 0 auto;
+  height: 30px;
+
+  button {
+    height: 30px;
+    width: 70px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgb(201, 196, 196);
+  }
+
+  .cancel {
+    float: left;
+    background-color: #fff;
+    color: rgb(177, 171, 171);
+
+    &:hover {
+      border: 1px solid rgb(146, 143, 143);
+      color: rgb(65, 61, 61);
+    }
+  }
+
+  .add {
+    float: right;
+    border: none;
+    background-color: rgba(20, 133, 207, 0.582);
+    color: #fff;
+
+    &:hover {
+      background-color: rgba(13, 95, 150, 0.582);
+    }
+  }
+}
+
+.post-msg {
+  width: 200px;
+  text-align: center;
+  margin: 30px 0;
+
+  button {
+    height: 30px;
+    width: 70px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgba(20, 133, 207, 0.582);
+    color: #fff;
+    box-shadow: none;
+    appearance: none;
+    border-style: none;
+    margin: 0 15px;
+
+    &:hover {
+      background-color: rgba(13, 95, 150, 0.582);
+    }
+  }
+
+  .invalid-btn {
+    background-color: rgba(194, 198, 201, 0.582);
+    color: #fff;
+
+    &:hover {
+      background-color: rgba(194, 198, 201, 0.582);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.edit {
+  padding: 20px 5px;
+}
+
+.summary {
+  label {
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+    margin: 5px 0;
+    // color: 
+  }
+
+  textarea {
+    width: 100%;
+    height: 60px;
+  }
+}

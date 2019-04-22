@@ -1,0 +1,47 @@
+<div class="arc-edit" (click)="editClick($event)">
+  <form [formGroup]="articleForm" (ngSubmit)="post($event)">
+    <div class="title">
+      <input nz-input formControlName="arc_title" placeholder="请输入文章标题">
+    </div>
+    <div class="options">
+      <label>
+        <span>文章分类：</span>
+        <select id="0" (change)="optionChange($event)">
+          <option *ngFor="let item of types; let i=index" value="{{item.value}}" id="{{item.id}}">{{item.value}}
+          </option>
+        </select>
+      </label>
+      <label>
+        <span>是否原创：</span>
+        <input type="radio" formControlName="arc_orginal" name="arc_orginal" value="0" checked="{{true}}"> 是
+        <input type="radio" formControlName="arc_orginal" name="arc_orginal" value="1"> 否
+      </label>
+      <label *ngIf="articleForm.value.arc_orginal ==='1'">原文地址：<input type="text" placeholder="原文链接必须带有http开头！"
+          formControlName="originLink"></label>
+      <label style="position: relative;">
+        <span>关键词：</span>
+        <input class="tag" placeholder="多个关键词之间用','分开" formControlName="tags">
+        <button (click)="showTagsModal(mContent)">从模板中添加</button>
+        <ng-template #mContent>
+          <!-- <div class="modal"> -->
+            <!-- <label *ngFor="let item of allTags" (click)="selectLabel($event,item)"
+              class="{{item['selected']?'selected':''}}">{{item.label}}</label> -->
+              <nz-checkbox-group formControlName="allTags" name="" (ngModelChange)="selectLabel(allTags)"></nz-checkbox-group>
+              
+        </ng-template>
+      </label>
+    </div>
+    <div class="edit">
+      <froala [froalaOptions]="froalaOptions" [froalaData]="text" (model)="onFroalaModelChanged($event)"
+        (editorInitialized)="onEditorInitialized()"></froala>
+    </div>
+    <div class="summary">
+      <label>摘要：</label>
+      <textarea placeholder="简单叙述文章主要内容，200字以内" formControlName="summary"></textarea>
+    </div>
+    <div class="post-msg">
+      <button type="submit" [class.invalid-btn]="!articleForm.valid">发表</button>
+      <button type="button" (click)="cancelPublish()">取消</button>
+    </div>
+  </form>
+</div>

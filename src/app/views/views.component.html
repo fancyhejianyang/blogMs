@@ -3,10 +3,10 @@
     <li nz-submenu class="menu-item">
       <span title class="menu-title"><i nz-icon [nzType]="'setting'"></i>系统管理</span>
       <ul>
-        <li nz-menu-item><i nz-icon [nzType]="'edit'" nzTheme="outline"></i>文章发布</li>
+        <li nz-menu-item [routerLink]="[ '/index' ]"><i nz-icon [nzType]="'bars'"></i>文章管理</li>
       </ul>
       <ul>
-        <li nz-menu-item><i nz-icon [nzType]="'bars'"></i>文章管理</li>
+        <li nz-menu-item [routerLink]="[ '/arc_post' ]"><i nz-icon [nzType]="'edit'" nzTheme="outline"></i>文章发布</li>
       </ul>
       <ul>
         <li nz-menu-item><i nz-icon [nzType]="'file'"></i>页面管理</li>

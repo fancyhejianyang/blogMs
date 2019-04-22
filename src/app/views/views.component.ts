@@ -8,14 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewsComponent implements OnInit {
   minHeight: string;
-  constructor(private activeRoute: ActivatedRoute) {
+  constructor() {
     this.minHeight = window.innerHeight - 60 + 'px';
   }
 
   ngOnInit() {
-    this.activeRoute.data.subscribe(data => {
-      console.log(data);
-    });
   }
 
 }

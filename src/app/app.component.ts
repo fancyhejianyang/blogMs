@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivationEnd, Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { TitleService } from './core/title.service';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,10 @@ import { ActivationEnd, Router, NavigationEnd, ActivatedRoute } from '@angular/r
 })
 export class AppComponent implements OnInit {
   title = 'blogMs';
-  private router: Router;
-  // private activeRouter: ActivatedRoute;
-  constructor(private router: Router) {
-    this.router = router;
-    this.router.events.subscribe((event: NavigationEnd) => {
-      if (event instanceof ActivationEnd) {
-        console.log(event);
-      }
-    });
+  constructor(private titleService: TitleService) {
   }
   ngOnInit() {
+    this.titleService.init();
   }
   watchMessage() {
     console.log('message');

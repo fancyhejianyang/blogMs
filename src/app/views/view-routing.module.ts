@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ViewsComponent } from './views.component';
 import { IndexComponent } from '../index/index.component';
+import { ArticlePostComponent } from '../components/article-post/article-post.component';
 const viewRoutes: Routes = [
   {
     path: '',
@@ -16,6 +17,11 @@ const viewRoutes: Routes = [
       {
         path: 'index',
         component: IndexComponent,
+        data: { title: '文章管理' }
+      },
+      {
+        path: 'arc_post',
+        component: ArticlePostComponent,
         data: { title: '文章发布' }
       }
     ]

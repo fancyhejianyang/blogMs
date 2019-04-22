@@ -20,9 +20,15 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
+    "froala-editor": "^2.9.5",
+    "jquery": "^3.4.0",
+    "lodash": "^4.17.11",
     "ng-zorro-antd": "^7.2.0",
+    "ng2-froala-editor": "^1.0.17",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "typings": "^2.1.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
