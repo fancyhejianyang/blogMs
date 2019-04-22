@@ -23,11 +23,10 @@
         <input class="tag" placeholder="多个关键词之间用','分开" formControlName="tags">
         <button (click)="showTagsModal(mContent)">从模板中添加</button>
         <ng-template #mContent>
+          <app-key-word [selectedTags]="selectedTag"></app-key-word>
           <!-- <div class="modal"> -->
             <!-- <label *ngFor="let item of allTags" (click)="selectLabel($event,item)"
               class="{{item['selected']?'selected':''}}">{{item.label}}</label> -->
-              <nz-checkbox-group formControlName="allTags" name="" (ngModelChange)="selectLabel(allTags)"></nz-checkbox-group>
-              
         </ng-template>
       </label>
     </div>

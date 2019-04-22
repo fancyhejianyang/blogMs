@@ -44,7 +44,7 @@ export class ArticlePostComponent implements OnInit {
     tags: new FormControl([], [Validators.required]),
     content: new FormControl('', [Validators.required]),
     originLink: new FormControl(''),
-    allTags: new FormControl(cloneDeep(this.allTags).__wrapped__),
+    // allTags: new FormControl(cloneDeep(this.allTags).__wrapped__),
     summary: new FormControl('', [Validators.required])
   });
   _type: string;
@@ -132,7 +132,7 @@ export class ArticlePostComponent implements OnInit {
   }
   showTagsModal(mContent) {
     // e.stopPropagation();
-    // console.log(this.selectedTag);
+    console.log(this.allTags);
     if (this.selectedTag.length > 0) {
       console.log(this.selectedTag);
       this.articleForm.patchValue({

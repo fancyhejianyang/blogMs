@@ -7,9 +7,10 @@ import { ViewsComponent } from './views.component';
 import { ArticlePostComponent } from '../components/article-post/article-post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FroalaEditorModule } from 'ng2-froala-editor/ng2-froala-editor';
+import { KeyWordComponent } from '../components/key-word/key-word.component';
 
 @NgModule({
-  declarations: [ViewsComponent, IndexComponent, ArticlePostComponent],
+  declarations: [ViewsComponent, IndexComponent, ArticlePostComponent, KeyWordComponent],
   imports: [
     CommonModule, NgZorroAntdModule, ViewRoutingModule, FormsModule, FroalaEditorModule, ReactiveFormsModule
   ],
