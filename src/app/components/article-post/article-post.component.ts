@@ -5,38 +5,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd';
-import cloneDeep from 'lodash';
+// import cloneDeep from 'lodash';
+const cloneDeep = require('clone-deep');
+import { TagsChangeService } from '../key-word/tags-change/tags-change.service';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-article-post',
   templateUrl: './article-post.component.html',
   styleUrls: ['./article-post.component.scss']
 })
 export class ArticlePostComponent implements OnInit {
-
+  tags;
+  selectedTag = [];
+  allTags: Array<{ label: string, id: number, selected?: boolean }>;
   constructor(
     private router: Router,
     private http: HttpClient,
-    private modalServe: NzModalService
+    private modalServe: NzModalService,
+    private tagsChange: TagsChangeService
     // private articleListServe: ArticleListService
-  ) { }
+  ) {
+  }
   modalTemplate: NzModalRef;
-  tags = [];
-  selectedTag = [];
-  allTags: Array<{ label: string, id: number, selected?: boolean }> = [
-    { label: 'HTML', id: 0 },
-    { label: 'CSS', id: 1 },
-    { label: 'Javascript', id: 2 },
-    { label: 'Angular', id: 3 },
-    { label: 'React', id: 4 },
-    { label: '移动端兼容', id: 5 },
-    { label: 'Jquery', id: 6 },
-    { label: 'ES系列', id: 7 },
-    { label: 'Typescript', id: 8 },
-    { label: 'webpack', id: 9 },
-    { label: 'gulp', id: 10 },
-    { label: 'Nodejs', id: 11 },
-    { label: '服务端知识', id: 12 }
-  ];
   articleForm = new FormGroup({
     arc_title: new FormControl('', [Validators.required]),
     type: new FormControl('frame', [Validators.required]),
@@ -77,18 +67,20 @@ export class ArticlePostComponent implements OnInit {
     shortcutsEnabled: [
       'show', 'bold', 'italic', 'underline', 'strikeThrough', 'indent', 'outdent', 'undo', 'redo', 'insertImage',
       'createLink', 'html'],
-    height: 900
+    height: 600
   };
-  tagModal = false;
   ngOnInit() {
-    // this.articleListServe.arc_type_update('edit');
+    this.tagsChange.tagResour$.subscribe(res => {
+      this.allTags = res;
+      console.log(this.allTags);
+    });
   }
   post(e) {
     e.stopPropagation();
-    console.log(this.articleForm);
+    // console.log(this.articleForm);
     if (this.articleForm.valid) {
       const params = this.articleForm.value;
-      this.http.post('http://127.0.0.1:8081/blog',
+      this.http.post(`${environment.SERVER_URL}/blog`,
         {
           headers: {
             header: 'Content-Type'
@@ -101,7 +93,7 @@ export class ArticlePostComponent implements OnInit {
           // withCredentials: true
         }).subscribe(res => {
           console.log(res);
-          this.router.navigateByUrl('/view?type=' + this.articleForm.value.type);
+          this.router.navigateByUrl('/index');
         });
     }
   }
@@ -114,11 +106,8 @@ export class ArticlePostComponent implements OnInit {
   onEditorInitialized(event?: any) {
     this.editor = FroalaEditorComponent.getFroalaInstance();
     this.editor.on('froalaEditor.focus', (e, editor) => {
-      this.tagModal = false;
     });
     this.editor.on('froalaEditor.blur', (e, editor) => {
-      console.log('editor is blur');
-      console.log(e.target.value);
       this.articleForm.patchValue({
         content: e.target.value
       });
@@ -131,14 +120,6 @@ export class ArticlePostComponent implements OnInit {
     });
   }
   showTagsModal(mContent) {
-    // e.stopPropagation();
-    console.log(this.allTags);
-    if (this.selectedTag.length > 0) {
-      console.log(this.selectedTag);
-      this.articleForm.patchValue({
-        allTags: cloneDeep(this.selectedTag).__wrapped__
-      });
-    }
     this.modalTemplate = this.modalServe.create({
       nzTitle: 'tplTitle',
       nzContent: mContent,
@@ -149,34 +130,31 @@ export class ArticlePostComponent implements OnInit {
       nzOnCancel: () => this.cancel()
     });
   }
-  allTagsUpdate() {
+  tagsTostring() {
     let s = '';
     this.selectedTag.map((item) => {
       if (item.checked) {
-        s += item.label + ',';
+        s += item.label + '，';
       }
       return this.selectedTag;
     });
     this.articleForm.patchValue({
       tags: s.slice(0, s.length - 1)
     });
+    this.tags = this.articleForm.value.tags;
   }
   addItem() {
-    this.selectedTag = cloneDeep(this.articleForm.value.allTags).__wrapped__;
-    this.allTagsUpdate();
+    this.selectedTag = cloneDeep(this.allTags);
+    this.tagsTostring();
   }
   cancel() {
     console.log(this.selectedTag);
-  }
-  selectLabel(options: Array<{ label: string; value: string; checked: boolean }>) {
-
   }
   cancelPublish() {
     this.router.navigateByUrl('view');
   }
   editClick(event) {
     // event.stopPropagation();
-    this.tagModal = false;
   }
 
 }

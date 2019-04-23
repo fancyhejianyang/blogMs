@@ -11,7 +11,7 @@ export class TagsChangeService {
 
   tagResour$ = this.tagsResour.asObservable();
 
-  tagsChange(tags: []) {
+  tagsChange(tags: Array<{}>) {
     this.tagsResour.next(tags);
   }
 }

@@ -17,16 +17,14 @@
         <input type="radio" formControlName="arc_orginal" name="arc_orginal" value="1"> 否
       </label>
       <label *ngIf="articleForm.value.arc_orginal ==='1'">原文地址：<input type="text" placeholder="原文链接必须带有http开头！"
-          formControlName="originLink"></label>
+          formControlName="originLink" style="width: 350px;"></label>
       <label style="position: relative;">
         <span>关键词：</span>
-        <input class="tag" placeholder="多个关键词之间用','分开" formControlName="tags">
+        <span class="tag">{{tags}}</span>
+        <input class="tag" placeholder="多个关键词之间用','分开" formControlName="tags" hidden>
         <button (click)="showTagsModal(mContent)">从模板中添加</button>
         <ng-template #mContent>
           <app-key-word [selectedTags]="selectedTag"></app-key-word>
-          <!-- <div class="modal"> -->
-            <!-- <label *ngFor="let item of allTags" (click)="selectLabel($event,item)"
-              class="{{item['selected']?'selected':''}}">{{item.label}}</label> -->
         </ng-template>
       </label>
     </div>

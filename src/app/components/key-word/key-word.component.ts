@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { TagsChangeService } from './tags-change/tags-change.service';
+// import cloneDeep from 'lodash';
+const cloneDeep = require('clone-deep');
 
 @Component({
   selector: 'app-key-word',
@@ -6,7 +9,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./key-word.component.scss']
 })
 export class KeyWordComponent implements OnInit, OnChanges {
-  @Input() selectedTags: [];
+  @Input() selectedTags;
   allTags: Array<{ label: string, id: number, selected?: boolean }> = [
     { label: 'HTML', id: 0 },
     { label: 'CSS', id: 1 },
@@ -22,17 +25,23 @@ export class KeyWordComponent implements OnInit, OnChanges {
     { label: 'Nodejs', id: 11 },
     { label: '服务端知识', id: 12 }
   ];
-  constructor() {
+  constructor(
+    private tagsChange: TagsChangeService
+  ) {
   }
 
   ngOnInit() {
-    console.log(this.selectedTags);
+    if (this.selectedTags.length > 0) {
+      this.allTags = cloneDeep(this.selectedTags);
+      console.log(this.allTags);
+    }
   }
   ngOnChanges(changes): void {
     console.log(changes);
   }
-  selectLabel(e) {
-    console.log(e);
+  selectLabel() {
+    this.tagsChange.tagsChange(this.allTags);
+    console.log(this.selectedTags);
   }
 
 }
