@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { TagsChangeService } from './tags-change/tags-change.service';
 // import cloneDeep from 'lodash';
-const cloneDeep = require('clone-deep');
+import cloneDeep from 'clone-deep';
 
 @Component({
   selector: 'app-key-word',

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd';
 // import cloneDeep from 'lodash';
-const cloneDeep = require('clone-deep');
+import cloneDeep from 'clone-deep';
 import { TagsChangeService } from '../key-word/tags-change/tags-change.service';
 import { environment } from '../../../environments/environment';
 @Component({

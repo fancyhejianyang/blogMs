@@ -8,6 +8,7 @@ import { ArticleListService } from './article-list.service';
 })
 export class IndexComponent implements OnInit {
   arcList = [];
+  test: any = { age: 1 };
   constructor(
     private arcListServe: ArticleListService
   ) { }
@@ -16,6 +17,10 @@ export class IndexComponent implements OnInit {
     this.arcListServe.getArticleList().subscribe(res => {
       console.log(res);
       this.arcList = res.data;
+      this.test = { name: 'test' }
     });
+  }
+  changeTest(){
+    this.test = {age:111};
   }
 }
