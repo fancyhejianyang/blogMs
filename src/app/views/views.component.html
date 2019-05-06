@@ -1,3 +1,18 @@
+<header>
+  <div class="home-page"><a [routerLink]="[ '/index' ]" routerLinkActive="active">首页</a> </div>
+  <div class="account-toggle">
+    <nz-badge [nzOverflowCount]="10" [nzCount]="20" (click)="watchMessage()">
+      <nz-avatar nzIcon="user" (click)="showMaterial($event)"></nz-avatar>
+    </nz-badge>
+    <nz-dropdown nzTrigger="click">
+      <a nz-dropdown>admin &nbsp;<i nz-icon type="down"></i></a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item></li>
+        <li nz-menu-item><a>2nd menu item</a></li>
+      </ul>
+    </nz-dropdown>
+  </div>
+</header>
 <div class="view-container" [ngStyle]="{'height': minHeight}">
   <ul nz-menu [nzMode]="'inline'" class="left-menu">
     <li nz-submenu class="menu-item">

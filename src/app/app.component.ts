@@ -14,12 +14,4 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.titleService.init();
   }
-  watchMessage() {
-    console.log('message');
-  }
-  showMaterial(e: MouseEvent) {
-    e.preventDefault();
-    e.cancelBubble = true;
-    console.log('material');
-  }
 }
