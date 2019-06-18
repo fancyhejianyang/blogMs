@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AUTH_TOKEN } from '../../environments/environment';
 import { StorageService } from '../core/storage.service';
+import { UserService } from '../core/user/user.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,8 @@ export class LoginService {
 
   constructor(
     private http: HttpClient,
-    private storage: StorageService
+    private storage: StorageService,
+    private userService: UserService
   ) { }
 
   login(url: string, user: User): Observable<any> {
@@ -22,8 +24,12 @@ export class LoginService {
       }
     }).pipe(
       tap((res: any) => {
+        console.log('res', res);
         if (res.loginInfo) {
           this.storageToken(res.loginInfo[AUTH_TOKEN]);
+          // 设置userinfo
+          const obj = { userName: res.loginInfo['userName'] };
+          this.userService.user = obj;
         }
       })
     );
