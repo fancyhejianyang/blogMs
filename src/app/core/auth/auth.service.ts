@@ -34,6 +34,12 @@ export class AuthService {
       return result;
     }
   }
+  exit(){
+    this.clearLoginInfo();
+  }
+  clearLoginInfo(){
+
+  }
   invalidate(): void {
     this.storage.removeItem(AUTH_TOKEN);
     this.router.navigateByUrl('/login');

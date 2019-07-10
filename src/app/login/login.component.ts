@@ -34,5 +34,17 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+  registe(){
+    console.log(MD5(this.userform.value.passWord.trim()).toString());
+    this.loginSvr.login('regist', {
+      userName: this.userform.value.userName.trim(),
+      passWord: MD5(this.userform.value.passWord.trim()).toString()
+    }).subscribe(res => {
+      console.log(res);
+      if (res.code === '1') {
+        alert(res.data.msg);
+      }
+    });
+  }
 
 }
