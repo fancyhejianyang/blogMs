@@ -8,7 +8,8 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd';
 // import cloneDeep from 'lodash';
 import cloneDeep from 'clone-deep';
 import { TagsChangeService } from '../key-word/tags-change/tags-change.service';
-import { environment } from '../../../environments/environment';
+import { environment, STORAGE_PREFIX, AUTH_TOKEN } from '../../../environments/environment';
+import { StorageService } from '../../core/storage.service';
 @Component({
   selector: 'app-article-post',
   templateUrl: './article-post.component.html',
@@ -22,7 +23,8 @@ export class ArticlePostComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private modalServe: NzModalService,
-    private tagsChange: TagsChangeService
+    private tagsChange: TagsChangeService,
+    private storageService: StorageService
     // private articleListServe: ArticleListService
   ) {
   }
@@ -83,7 +85,9 @@ export class ArticlePostComponent implements OnInit {
       this.http.post(`${environment.SERVER_URL}/blog`,
         {
           headers: {
-            header: 'Content-Type'
+            header: 'Content-Type',
+            // Authorization: this.storageService.getItem(AUTH_TOKEN),
+            // token: this.storageService.getItem(AUTH_TOKEN)
           },
           observe: 'body',
           params: {

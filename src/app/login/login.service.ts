@@ -10,7 +10,7 @@ import { UserService } from '../core/user/user.service';
   providedIn: 'root'
 })
 export class LoginService {
-  returnCitySN:any = window.returnCitySN;
+  returnCitySN: any = window['returnCitySN'];
   constructor(
     private http: HttpClient,
     private storage: StorageService,
@@ -21,8 +21,8 @@ export class LoginService {
     return this.http.post(`${environment.SERVER_URL}/${url}`, {
       params: {
         ...user,
-        ip:this.returnCitySN["cip"],
-        city:this.returnCitySN["cname"]
+        ip: this.returnCitySN["cip"],
+        city: this.returnCitySN["cname"]
       }
     }).pipe(
       tap((res: any) => {
@@ -36,15 +36,15 @@ export class LoginService {
       })
     );
   }
-  regist(url:string,user:User):Observable<any>{
-    return this.http.post(`${environment.SERVER_URL}/${url}`,{
-      params:{
+  regist(url: string, user: User): Observable<any> {
+    return this.http.post(`${environment.SERVER_URL}/${url}`, {
+      params: {
         ...user,
-        ip:this.returnCitySN["cip"],
-        city:this.returnCitySN["cname"]
+        ip: this.returnCitySN["cip"],
+        city: this.returnCitySN["cname"]
       }
     }).pipe(
-      tap((res:any)=>{
+      tap((res: any) => {
         console.log(res);
       })
     )
