@@ -12,14 +12,11 @@ export class JwtInterceptor implements HttpInterceptor {
     private router: Router
   ) { }
   private handleData(event: HttpResponse<any>): Observable<any> {
-    console.log(event);
-    alert(event.status);
     if (event.status === 401) {
       this.localStorage.removeItem(AUTH_TOKEN);
       this.router.navigateByUrl('/');
-      return of(event);
     }
-    return throwError(event);
+    return of(event);
   }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = this.localStorage.getItem(AUTH_TOKEN);
@@ -32,9 +29,12 @@ export class JwtInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       tap((res: HttpResponse<any>) => {
-        this.handleData(res);
+        
       }),
-      catchError(err => { return of(err) })
+      catchError(err => { 
+        this.handleData(err);
+        return of(err)
+      })
     );
   }
 }

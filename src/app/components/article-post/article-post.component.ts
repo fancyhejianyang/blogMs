@@ -96,7 +96,7 @@ export class ArticlePostComponent implements OnInit {
           responseType: 'json',
           // withCredentials: true
         }).subscribe(res => {
-          console.log(res);
+          console.log('res===',res);
           this.router.navigateByUrl('/index');
         });
     }

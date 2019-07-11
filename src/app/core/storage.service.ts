@@ -10,7 +10,7 @@ export class StorageService {
   constructor() { }
 
   removeItem(item: string) {
-    window.localStorage.removeItem(item);
+    window.localStorage.removeItem(STORAGE_PREFIX + item);
   }
   getItem(key: string, decode?: boolean): string {
     let value = window.localStorage.getItem(STORAGE_PREFIX + key);
